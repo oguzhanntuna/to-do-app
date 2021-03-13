@@ -1,0 +1,39 @@
+.toDo-form {
+    font-size: 1.6rem;
+    padding: 0 3rem;
+    margin-bottom: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &-input {
+        flex: 0 0 85%;
+        padding: 1rem 2rem;
+        margin-right: 3rem;
+        border-radius: 30px;
+        border: none;
+        background-color: rgb(185, 201, 255);
+        transition: all .2s;
+        
+        &:focus {
+            flex: 0 0 90%;
+        }
+    }
+
+    &-button {
+        flex: 0 0 3.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background-color: rgb(185, 201, 255);
+    }
+}

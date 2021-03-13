@@ -1,0 +1,42 @@
+@import '../../../sass/main.scss';
+
+.weather {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border: 2px solid $color-primary;
+    border-radius: 30px;
+    box-shadow: 0 1rem 2rem rgba($color-primary, .2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-icon {
+        width: 7.5rem;
+        height: 7.5rem;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    &-details {
+        &-location {
+            padding: 1rem;
+
+            display: flex;
+            justify-content: center;
+        }
+        
+        &-description {
+            padding: 1rem;
+
+            display: flex;
+
+            :first-child{
+                margin-right: 1rem;
+            }
+        }
+    }
+}

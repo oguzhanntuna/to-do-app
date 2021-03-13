@@ -1,0 +1,26 @@
+.toolbar {
+    font-size: 1.6rem;
+    list-style: none;
+    padding: 3rem;
+    margin: 0 2rem;
+    border-bottom: 1px solid #000;
+
+    display: flex;
+    align-items: center;
+
+    & > * {
+        font-weight: 700;
+
+        &:not(:first-child) {
+            cursor: pointer;
+        }
+    }
+
+    &-weather {
+        margin-right: auto;
+    }
+
+    &-login {
+        margin-right: 3rem;
+    }
+}
