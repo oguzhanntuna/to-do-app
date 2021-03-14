@@ -7,7 +7,6 @@ const Weather: React.FC = () => {
 
     interface WeatherInfo {
         location: string;
-        country: string;
         description: string; 
         icon: string;
         temp: number;
@@ -37,7 +36,6 @@ const Weather: React.FC = () => {
                     .then(response => {
                         setWeatherInfo({
                             location: response.data.name,
-                            country: response.data.sys.country,
                             description: response.data.weather[0].description.toUpperCase(), 
                             icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
                             temp: Math.round(convertKelvinToCelsius(response.data.main.temp))
@@ -52,32 +50,28 @@ const Weather: React.FC = () => {
         return temperature - 273.15;
     }
 
-    let weather = null;
+    let weather = <div className="weather"></div>;
     if (!loading && weatherInfo) {
         weather = (
-            <div className="weather">
+            <div className="weather fetched">
                 <div className="weather-icon">
                     <img src={weatherInfo.icon} alt="weather-icon" /> 
+                </div>
+                <div className="weather-temperature">
+                    {weatherInfo.temp}<sup>&deg;C</sup>
                 </div>
                 <div className="weather-details">
                     <div className="weather-details-location">
                         <p>{weatherInfo.location}</p>
-                        <span>/</span>
-                        <p>{weatherInfo.country}</p>
                     </div>
-                    <div className="weather-details-description">
-                        <p>{weatherInfo.description}</p>
-                        <p>{weatherInfo.temp}<span>&deg;C</span></p>
-                    </div>
+                    <div className="weather-details-description">{weatherInfo.description}</div>
                 </div>
             </div>
         );
     }
 
     return(
-        loading 
-            ? <p>Loading...</p>
-            : weather
+        weather
     );
 }
 
