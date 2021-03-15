@@ -1,0 +1,27 @@
+@import '../../../sass/main.scss';
+
+.login-form-button,
+.signup-form-button {
+    padding: 10px 30px;
+    margin: 0 auto;
+    
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
+    box-shadow: 0 1rem 2rem rgba($color-secondary, .4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+
+    transform: all .2s;
+
+    &:focus { outline: none; }
+
+    &:hover { transform: translateY(-3px); }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-secondary, .4);
+    }
+}

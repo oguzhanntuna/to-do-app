@@ -1,0 +1,29 @@
+@import '../../sass/main.scss';
+
+.login {
+    padding: 5rem 0;
+
+    display: flex;
+    flex-direction: column;  
+    
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        
+        & > * {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & label {
+                flex: 0 0 15rem;
+                margin-right: 1rem;
+                
+                text-align: end;
+            }
+        }
+    }
+}
