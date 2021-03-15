@@ -3,7 +3,7 @@
 .weather {
     font-weight: 300;
     border-radius: 30px;
-    box-shadow: 0 1rem 2rem rgba($color-secondary, .2);
+    box-shadow: 0 1rem 2rem rgba($color-secondary, .1);
     min-height: 7.5rem;
 
     display: flex;
@@ -12,6 +12,7 @@
     opacity: 0;
     transition: opacity 1s;
 
+    background-color: #fff;
     &-icon {
         width: 7.5rem;
         height: 7.5rem;

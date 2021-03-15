@@ -2,10 +2,11 @@
     max-width: 90rem;
     margin: 10vh auto; 
     border-radius: 30px;
-    background-color: #fff;
-    box-shadow: 0 2rem 4rem rgba(0,0,0,.2);
+    background-color:  #fff;
+    box-shadow: 0 2rem 4rem rgba(0,0,0, .4);
+    
+    & main {
+        padding: 0 5rem 3rem 5rem;
+    }
 }
 
-main {
-    padding: 3rem 5rem;
-}

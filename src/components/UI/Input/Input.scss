@@ -2,9 +2,13 @@
 
 .form-input {
     padding: 1rem;
-    background-color: rgb(185, 201, 255);
+    background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
+    color: #fff;
+    opacity: .8;
     border: none;
     border-radius: 30px;
 
-    &:focus { border: 2px solid $color-primary; outline: none; }
+    transition: opacity .2s;
+
+    &:focus { outline: none; opacity: 1}    
 }
