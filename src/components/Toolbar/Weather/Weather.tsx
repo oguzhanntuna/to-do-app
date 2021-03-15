@@ -58,7 +58,7 @@ const Weather: React.FC = () => {
     let weather = <div className="weather"></div>;
     if (!loading && weatherInfo) {
         weather = (
-            <div className="weather weather-fetched">
+            <div className="weather weather--fetched">
                 <div className="weather-icon">
                     <img src={weatherInfo.icon} alt="weather-icon" /> 
                 </div>
