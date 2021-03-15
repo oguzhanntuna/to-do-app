@@ -37,7 +37,7 @@ const Weather: React.FC = () => {
 
     useEffect(() => {
         if (geolocation) {
-            axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${geolocation.latitude}&lon=${geolocation.latitude}&appid=${apiKey}`)
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${geolocation.latitude}&lon=${geolocation.longitude}&appid=${apiKey}`)
                     .then(response => {
                         setWeatherInfo({
                             location: response.data.name,
@@ -47,8 +47,8 @@ const Weather: React.FC = () => {
                         });
                     })
                     .catch(() => alert(`Couldn't reach out to the weather informations at your location...`));
-                setLoading(false);
-        }       
+                setLoading(false);    
+        }
     }, [geolocation]);
 
     const convertKelvinToCelsius = (temperature: number) => {

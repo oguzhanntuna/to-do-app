@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Toolbar.scss';
 import Weather from './Weather/Weather';
@@ -10,8 +11,8 @@ const Toolbar: React.FC = props => {
                 <li className="toolbar-weather">
                     <Weather />
                 </li>
-                <li className="toolbar-login">Log in</li>
-                <li className="toolbar-signup">Sign up</li>
+                <li className="toolbar-login"><Link to="/login">Log in</Link></li>
+                <li className="toolbar-signup"><Link to="/signup">Sign up</Link></li>
             </ul>
         </header>
     );
