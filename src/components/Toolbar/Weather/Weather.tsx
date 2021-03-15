@@ -5,6 +5,10 @@ import './Weather.scss';
 
 const Weather: React.FC = () => {
 
+    interface Geolocation {
+        latitude: number,
+        longitude: number
+    }
     interface WeatherInfo {
         location: string;
         description: string; 
@@ -13,8 +17,7 @@ const Weather: React.FC = () => {
     }
 
     const apiKey = '31af0c1704ccbeb990753e45a6465aba';
-    const [latitude, setLatitude] = useState<number | null>(null);
-    const [longitude, setLongitude] = useState<number | null>(null);
+    const [geolocation, setGeolocation] = useState<Geolocation | null>(null);
 
     const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -22,8 +25,10 @@ const Weather: React.FC = () => {
     useEffect(() => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
-                    setLatitude(position.coords.latitude);
-                    setLongitude(position.coords.longitude);
+                    setGeolocation({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    })
                 }); 
             } else {
                 alert('Geolocation is not supported by this browser.');
@@ -31,8 +36,8 @@ const Weather: React.FC = () => {
     }, []);
 
     useEffect(() => {
-            if (latitude && longitude) {
-                axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
+        if (geolocation) {
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${geolocation.latitude}&lon=${geolocation.latitude}&appid=${apiKey}`)
                     .then(response => {
                         setWeatherInfo({
                             location: response.data.name,
@@ -41,10 +46,10 @@ const Weather: React.FC = () => {
                             temp: Math.round(convertKelvinToCelsius(response.data.main.temp))
                         });
                     })
-                    .catch(() => alert(`Couldn't find weather informations at your location...`));
+                    .catch(() => alert(`Couldn't reach out to the weather informations at your location...`));
                 setLoading(false);
-            }
-    }, [latitude, longitude]);
+        }       
+    }, [geolocation]);
 
     const convertKelvinToCelsius = (temperature: number) => {
         return temperature - 273.15;
@@ -53,7 +58,7 @@ const Weather: React.FC = () => {
     let weather = <div className="weather"></div>;
     if (!loading && weatherInfo) {
         weather = (
-            <div className="weather fetched">
+            <div className="weather weather-fetched">
                 <div className="weather-icon">
                     <img src={weatherInfo.icon} alt="weather-icon" /> 
                 </div>
