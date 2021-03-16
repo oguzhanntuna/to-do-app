@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 
 import Layout from './hoc/Layout/Layout';
 import ToDo from './pages/ToDo/ToDo';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
+
 
 const App: React.FC = () => {
   const routes = (
@@ -18,9 +20,11 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Layout>
-          {routes}
-      </Layout>
+      <AuthProvider>
+        <Layout>
+            {routes}
+        </Layout>
+      </AuthProvider>
     </div>
   );
 }

@@ -4,11 +4,12 @@ import './Button.scss';
 
 interface ButtonProps {
     className: string;
+    disabled: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <button className={props.className}>{props.children}</button>
+        <button className={props.className} disabled={props.disabled}>{props.children}</button>
     );
 };
 
