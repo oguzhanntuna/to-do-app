@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './ToDo.scss';
-import ToDoInput from '../../components/ToDo/ToDoInput/ToDoInput';
+import ToDoInput from '../../components/ToDo/ToDoForm/ToDoForm';
 import ToDoItem from '../../components/ToDo/ToDoItem/ToDoItem';
 
 interface ToDo {

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import './ToDoInput.scss';
+import './ToDoForm.scss';
 
 interface ToDoInputProps {
     toDoAdd: (text: string) => void;
