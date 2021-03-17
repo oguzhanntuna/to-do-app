@@ -16,7 +16,7 @@ const Weather: React.FC = () => {
         temp: number;
     }
 
-    const apiKey = '31af0c1704ccbeb990753e45a6465aba';
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
     const [geolocation, setGeolocation] = useState<Geolocation | null>(null);
 
     const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
@@ -49,7 +49,7 @@ const Weather: React.FC = () => {
                     .catch(() => alert(`Couldn't reach out to the weather informations at your location...`));
                 setLoading(false);    
         }
-    }, [geolocation]);
+    }, [geolocation, apiKey]);
 
     const convertKelvinToCelsius = (temperature: number) => {
         return temperature - 273.15;

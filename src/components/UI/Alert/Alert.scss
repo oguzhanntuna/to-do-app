@@ -1,0 +1,25 @@
+@import '../../../sass/main.scss';
+
+.alert {
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding: 2rem 4rem;
+    margin-bottom: 5rem;
+
+    display: flex;
+    justify-content: center;
+
+    &-warning {
+        color: #ee6969;
+        border: 2px solid #ee6969;
+        border-radius: 5px;
+        box-shadow: 0 1rem 2rem rgba(#ee6969, .2);
+    }
+
+    &-success {
+        color: #68d968;
+        border: 2px solid #68d968;
+        border-radius: 5px;
+        box-shadow: 0 1rem 2rem rgba(#68d968, .2);
+    }
+}

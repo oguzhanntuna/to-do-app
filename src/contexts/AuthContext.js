@@ -18,17 +18,27 @@ export function AuthProvider(props) {
         return auth.signInWithEmailAndPassword(email, password);
     }
 
+    function logOut() {
+        return auth.signOut().then(() => {
+            console.log('sign out succesfull');
+        }).catch((error) => {
+            console.log('error');
+        })
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
-        })
+        });
 
         return unsubscribe;
     }, []);
 
     const value = {
         currentUser,
-        signUp
+        signUp,
+        logIn,
+        logOut
     }
 
     return (

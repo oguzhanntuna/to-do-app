@@ -1,3 +1,5 @@
+@import '../../sass/main.scss';
+
 .toolbar {
     font-size: 1.6rem;
     list-style: none;
@@ -13,6 +15,10 @@
         &:not(:first-child) {
             cursor: pointer;
 
+            &:not(:last-child) {
+                margin-right: 3rem;
+            }
+
             & a {
                 color: #000;
                 text-decoration: none;
@@ -24,7 +30,7 @@
         margin-right: auto;
     }
 
-    &-login {
-        margin-right: 3rem;
+    &-currentUserName {
+        color: $color-secondary;
     }
 }
