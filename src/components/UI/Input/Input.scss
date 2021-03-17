@@ -1,6 +1,7 @@
 @import '../../../sass/main.scss';
 
 .form-input {
+    font-size: 1.6rem;
     padding: 1rem;
     background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
     color: #fff;
@@ -11,4 +12,6 @@
     transition: opacity .2s;
 
     &:focus { outline: none; opacity: 1}    
+
+    
 }

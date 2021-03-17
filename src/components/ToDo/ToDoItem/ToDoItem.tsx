@@ -9,9 +9,15 @@ interface ToDoItemProps {
 
 const ToDoItem: React.FC<ToDoItemProps> = (props) => {
     const toDoItems = props.items.map(toDo => 
-        <li className="toDo-list-item" key={toDo.id} onClick={() => props.toDoRemove(toDo.id)}>
-            <button></button>
-            <p>{toDo.text}</p>
+        <li className="toDo-list-item" key={toDo.id}>
+            <ul className="toDo-list-item-actions">
+                <li 
+                    className="toDo-list-item-actions-delete" 
+                    onClick={() => props.toDoRemove(toDo.id)}>Delete</li>
+                <li>Star</li>
+                <li>Edit?</li>
+            </ul>
+            <p className="toDo-list-item-text">{toDo.text}</p>
         </li>
     );
 

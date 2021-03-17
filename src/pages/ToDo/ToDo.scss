@@ -1,12 +1,12 @@
 @import '../../sass/main.scss';
 
 .toDo-content {
-    padding: 5rem 0;
-
-    border-radius: 30px;
-    box-shadow: 0 1rem 2rem rgba($color-secondary, .2);
+    padding: 2rem 2rem;
     
     &-list {
         list-style: none;
+
+        display: flex;
+        flex-wrap: wrap;
     }
 }
