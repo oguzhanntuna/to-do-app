@@ -7,9 +7,10 @@
     box-shadow: 0 1rem 2rem rgba($color-secondary, .2);
 
     display: flex;
-    flex-direction: column;   
-    
-    .signup-form {
+    flex-direction: column;  
+    align-items: center; 
+
+    &-form {
         display: flex;
         flex-direction: column;
         

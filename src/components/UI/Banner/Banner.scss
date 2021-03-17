@@ -1,0 +1,17 @@
+@import '../../../sass/main.scss';
+
+.banner {
+    padding: 1rem 5rem;
+    align-self: stretch;
+    text-align: center;
+
+    font-size: 3.2rem;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+
+    margin-bottom: 5rem;
+
+    color: #fff;
+    background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
+}

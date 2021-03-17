@@ -7,7 +7,6 @@ import ToDo from './pages/ToDo/ToDo';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 
-
 const App: React.FC = () => {
   const routes = (
     <Switch>
@@ -22,7 +21,7 @@ const App: React.FC = () => {
     <div className="App">
       <AuthProvider>
         <Layout>
-            {routes}
+          {routes}
         </Layout>
       </AuthProvider>
     </div>
