@@ -9,11 +9,13 @@ import ToDoItem from '../../components/ToDo/ToDoItem/ToDoItem';
 interface IToDo {
     id: string,
     text: string,
+    isDone: boolean,
     userId: string
 }
 
 const ToDoPage: React.FC = () => {
     const [toDos, setToDos] = useState<IToDo[]>([]);
+    const [fetchTrigger, setFetchTrigger] = useState<boolean>(false);
     const { currentUser } = useAuth();
 
     useEffect(() => {
@@ -34,13 +36,14 @@ const ToDoPage: React.FC = () => {
                 console.log(error);
             })
         }
-    }, [currentUser]);
+    }, [currentUser, fetchTrigger]);
 
     const toDoAddHandler = (toDoText: string) => {
         if (toDoText.length !== 0) {
             const toDoData: IToDo = {
-                id: Math.random().toString() ,
+                id: Math.random().toString(),
                 text: toDoText, 
+                isDone: false,
                 userId: currentUser.providerData[0].uid 
             }
             axios.post(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos.json`, toDoData)
@@ -63,11 +66,27 @@ const ToDoPage: React.FC = () => {
             })
     }
 
+    const toDoDoneHandler = (toDo: IToDo) => {
+        const toDoData: IToDo = {
+            id: toDo.id,
+            text: toDo.text, 
+            isDone: !toDo.isDone ? true : false,
+            userId: toDo.userId
+        }
+        axios.put(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDo.id}.json`, toDoData )
+            .then(() => {
+                !fetchTrigger ? setFetchTrigger(true) : setFetchTrigger(false);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div className="toDo-content">
             <ToDoForm toDoAdd={toDoAddHandler} />
             <ul className="toDo-content-list">
-                <ToDoItem items={toDos} toDoRemove={toDoDeleteHandler}/>
+                <ToDoItem items={toDos} toDoRemove={toDoDeleteHandler} toDoDone={toDoDoneHandler}/>
             </ul>
         </div>
     );

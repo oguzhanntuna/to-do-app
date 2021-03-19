@@ -37,7 +37,10 @@
     }
 
     &-text {
-
+        
+        &-done {
+            text-decoration: line-through;
+        }
     }
     
 
