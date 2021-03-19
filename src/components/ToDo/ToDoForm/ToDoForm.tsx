@@ -25,7 +25,7 @@ const ToDoInput: React.FC<IToDoFormProps> = (props) => {
                 placeholder="Add a to-do"
                 ref={textInputRef}></input>
             <button className="toDo-form-button">
-                <img src={AddSVG} alt="add-black-48dp" />     
+                <img src={AddSVG} alt="add-icon" />     
             </button>
         </form>
     );
