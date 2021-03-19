@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 
 import './ToDoForm.scss';
 
-interface ToDoInputProps {
+interface IToDoFormProps {
     toDoAdd: (text: string) => void;
 }
 
-const ToDoInput: React.FC<ToDoInputProps> = (props) => {
+const ToDoInput: React.FC<IToDoFormProps> = (props) => {
     const textInputRef = useRef<HTMLInputElement>(null);
 
     const toDoSubmitHandler = (event: React.FormEvent) => {

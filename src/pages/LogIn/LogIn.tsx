@@ -28,7 +28,6 @@ const LogIn: React.FC = () => {
         logIn(emailRef.current?.value, passwordRef.current?.value)
             .then((response: any) => {
                 setLoading(true);
-                console.log(response);
                 history.push('/');
             }).catch(() => {
                 setMessage({text: 'Your email and password do not seem to match!', type: 'warning'});

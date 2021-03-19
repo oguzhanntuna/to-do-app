@@ -14,8 +14,7 @@ const Toolbar: React.FC = () => {
         setError('');
 
         logOut()
-            .then((response: any) => {
-                console.log(response);
+            .then(() => {
                 history.push('/login');
             })
             .catch(() => {
