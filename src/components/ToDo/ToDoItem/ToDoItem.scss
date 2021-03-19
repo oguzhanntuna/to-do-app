@@ -9,10 +9,12 @@
     
     margin: 0 auto;
     padding: 0 1rem;
-    max-width: 20rem;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 
-    align-self: flex-start;
-
+    transition: all .2s;
 
     & > * {
         padding: .5rem;
@@ -35,8 +37,7 @@
     }
 
     &-text {
-        
-        
+
     }
     
 
@@ -45,6 +46,9 @@
     }
 
     &:hover {
+        background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
+        color: #fff;
+
         button {
             background-color: $color-primary;
         }

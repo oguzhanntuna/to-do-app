@@ -5,11 +5,11 @@ import './Weather.scss';
 
 const Weather: React.FC = () => {
 
-    interface Geolocation {
+    interface IGeolocation {
         latitude: number,
         longitude: number
     }
-    interface WeatherInfo {
+    interface IWeatherInfo {
         location: string;
         description: string; 
         icon: string;
@@ -17,9 +17,9 @@ const Weather: React.FC = () => {
     }
 
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-    const [geolocation, setGeolocation] = useState<Geolocation | null>(null);
+    const [geolocation, setGeolocation] = useState<IGeolocation | null>(null);
 
-    const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
+    const [weatherInfo, setWeatherInfo] = useState<IWeatherInfo | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
