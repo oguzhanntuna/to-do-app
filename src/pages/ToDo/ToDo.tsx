@@ -14,7 +14,6 @@ interface IToDo {
 
 const ToDoPage: React.FC = () => {
     const [toDos, setToDos] = useState<IToDo[]>([]);
-    const [actionTriggered, setActionTriggered] = useState<boolean>(false);
     const { currentUser } = useAuth();
 
     useEffect(() => {
@@ -24,29 +23,29 @@ const ToDoPage: React.FC = () => {
 
             axios.get('https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos.json' + queryParams)
             .then(response => {
+                //console.log(response)
                 const  fetchedToDos = [];
                 for (  let key in response.data ) {
                     fetchedToDos.push({ ...response.data[key], id: key });
                 }
                 setToDos(fetchedToDos);
-                
             })
             .catch(error => {
                 console.log(error);
             })
         }
-    }, [actionTriggered, currentUser]);
+    }, [currentUser]);
 
     const toDoAddHandler = (toDoText: string) => {
         if (toDoText.length !== 0) {
-            const toDoData = {
-                id: Math.random().toString(), 
+            const toDoData: IToDo = {
+                id: Math.random().toString() ,
                 text: toDoText, 
                 userId: currentUser.providerData[0].uid 
             }
             axios.post(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos.json`, toDoData)
-                .then(() => {
-                    actionTriggered ? setActionTriggered(false) : setActionTriggered(true);
+                .then((response) => {
+                    setToDos([...toDos, {...toDoData, id: response.data.name}]);
                 })
                 .catch(error => {
                     console.log(error);
@@ -57,7 +56,7 @@ const ToDoPage: React.FC = () => {
     const toDoDeleteHandler = (toDoId: string) => {
         axios.delete(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDoId}.json`)
             .then(() => {
-                actionTriggered ? setActionTriggered(false) : setActionTriggered(true);  
+                setToDos(toDos.filter(toDos => toDos.id !== toDoId));
             })
             .catch(error => {
                 console.log(error); 
