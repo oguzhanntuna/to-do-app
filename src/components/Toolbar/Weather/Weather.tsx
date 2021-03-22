@@ -42,7 +42,7 @@ const Weather: React.FC = () => {
                         setWeatherInfo({
                             location: response.data.name,
                             description: response.data.weather[0].description.toUpperCase(), 
-                            icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+                            icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
                             temp: Math.round(convertKelvinToCelsius(response.data.main.temp))
                         });
                     })

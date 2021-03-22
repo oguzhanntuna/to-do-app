@@ -6,7 +6,7 @@
     font-style: italic;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 .5rem 1rem rgba($color-secondary, .2);
+    box-shadow: 0 .5rem 1rem rgba(#000, .2);
     
     min-width: 20rem;
     margin: 0 1.5rem 3rem 1.5rem;
@@ -24,7 +24,7 @@
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 1rem 2rem rgba($color-secondary, .2);
+        box-shadow: 0 1rem 2rem rgba(#000, .2);
     }
 
     &-actions {
@@ -56,7 +56,7 @@
 
                 background-color: #fff;
                 border-radius: 10px;
-                box-shadow: 0rem .25rem .5rem rgba($color-secondary, .4);
+                box-shadow: 0rem .25rem .5rem rgba(#000, .4);
     
                 transition: all .2s;
             }
