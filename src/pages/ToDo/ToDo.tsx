@@ -7,10 +7,11 @@ import ToDoForm from '../../components/ToDo/ToDoForm/ToDoForm';
 import ToDoItem from '../../components/ToDo/ToDoItem/ToDoItem';
 
 interface IToDo {
-    id: string,
-    text: string,
-    isDone: boolean,
-    userId: string
+    id: string;
+    text: string;
+    userId: string;
+    isDone: boolean;
+    isPinned: boolean;
 }
 
 const ToDoPage: React.FC = () => {
@@ -43,8 +44,9 @@ const ToDoPage: React.FC = () => {
             const toDoData: IToDo = {
                 id: Math.random().toString(),
                 text: toDoText, 
+                userId: currentUser.providerData[0].uid,
                 isDone: false,
-                userId: currentUser.providerData[0].uid 
+                isPinned: false
             }
             axios.post(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos.json`, toDoData)
                 .then((response) => {
@@ -70,8 +72,26 @@ const ToDoPage: React.FC = () => {
         const toDoData: IToDo = {
             id: toDo.id,
             text: toDo.text, 
+            userId: toDo.userId,
             isDone: !toDo.isDone ? true : false,
-            userId: toDo.userId
+            isPinned: false
+        }
+        axios.put(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDo.id}.json`, toDoData )
+            .then(() => {
+                !fetchTrigger ? setFetchTrigger(true) : setFetchTrigger(false);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    const toDoPinnedHandler = (toDo: IToDo) => {
+        const toDoData: IToDo = {
+            id: toDo.id,
+            text: toDo.text, 
+            userId: toDo.userId,
+            isDone: false,
+            isPinned: !toDo.isPinned ? true : false,
         }
         axios.put(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDo.id}.json`, toDoData )
             .then(() => {
@@ -86,7 +106,7 @@ const ToDoPage: React.FC = () => {
         <div className="toDo-content">
             <ToDoForm toDoAdd={toDoAddHandler} />
             <ul className="toDo-content-list">
-                <ToDoItem items={toDos} toDoRemove={toDoDeleteHandler} toDoDone={toDoDoneHandler}/>
+                <ToDoItem items={toDos} toDoRemove={toDoDeleteHandler} toDoDone={toDoDoneHandler} toDoPinned={toDoPinnedHandler}/>
             </ul>
         </div>
     );

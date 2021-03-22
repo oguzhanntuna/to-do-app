@@ -9,7 +9,7 @@
     box-shadow: 0 .5rem 1rem rgba($color-secondary, .2);
     
     min-width: 20rem;
-    margin: 0 auto;
+    margin: 0 1.5rem 3rem 1.5rem;
     padding: 0 1rem;
     
     display: flex;
@@ -22,12 +22,29 @@
         padding: .5rem;
     }
 
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 1rem 2rem rgba($color-secondary, .2);
+
+        button {
+            background-color: $color-primary;
+        }
+    }
+
+    &-pinned {
+        background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
+        color: #fff;
+    }
+
     &-actions {
+        height: 3rem;
+
         display: flex;
         align-items: center;
         justify-content: center;
 
         list-style: none;
+
 
         &-delete {
             margin-right: auto;
@@ -57,20 +74,6 @@
         
         &-done {
             text-decoration: line-through;
-        }
-    }
-    
-
-    &:not(:last-child) {
-        margin-bottom: 2rem;
-    }
-
-    &:hover {
-        background-image: linear-gradient(to right bottom, $color-primary, $color-secondary);
-        color: #fff;
-
-        button {
-            background-color: $color-primary;
         }
     }
 }

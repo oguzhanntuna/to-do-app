@@ -19,11 +19,7 @@ export function AuthProvider(props) {
     }
 
     function logOut() {
-        return auth.signOut().then(() => {
-            console.log('sign out succesfull');
-        }).catch((error) => {
-            console.log('error');
-        })
+        return auth.signOut();
     }
 
     useEffect(() => {
