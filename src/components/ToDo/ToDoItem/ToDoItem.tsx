@@ -1,9 +1,10 @@
 import React from 'react';
 
 import './ToDoItem.scss';
-import RemoveSVG from '../../../icons/remove_circle_outline-black-24dp.svg';
-import DoneSVG from '../../../icons/done_outline-black-24dp.svg';
-import StarSVG from '../../../icons/star_border-24px.svg';
+import Remove from '../../../icons/cross.svg';
+import Done from '../../../icons/done.svg';
+import Pin from '../../../icons/pin.svg';
+
 interface IToDo {
     id: string;
     text: string;
@@ -28,15 +29,15 @@ const ToDoItem: React.FC<IToDoItemProps> = (props) => {
                 <ul className="toDo-list-item-actions">
                     <li className="toDo-list-item-actions-delete" 
                         onClick={() => props.toDoRemove(toDo.id)}>
-                            <img src={RemoveSVG} alt="remove-icon" />
+                        <img src={Remove} alt="remove-icon" />
                     </li>
                     <li className="toDo-list-item-actions-star"
                         onClick={() => props.toDoPinned(toDo)}>
-                        <img src={StarSVG} alt="star-icon" />
+                        <img src={Pin} alt="star-icon" />
                     </li>
                     <li className="toDo-list-item-actions-done"
                         onClick={() => props.toDoDone(toDo)}>
-                        <img src={DoneSVG} alt="done-icon" /> 
+                        <img src={Done} alt="done-icon" /> 
                     </li>
                 </ul>
                 <p className={`toDo-list-item-text ${toDo.isDone ? isDoneCross : ''}`}>{toDo.text}</p>

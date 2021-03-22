@@ -37,6 +37,7 @@ const ToDoPage: React.FC = () => {
                 console.log(error);
             })
         }
+
     }, [currentUser, fetchTrigger]);
 
     const toDoAddHandler = (toDoText: string) => {
@@ -74,7 +75,7 @@ const ToDoPage: React.FC = () => {
             text: toDo.text, 
             userId: toDo.userId,
             isDone: !toDo.isDone ? true : false,
-            isPinned: false
+            isPinned: toDo.isPinned
         }
         axios.put(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDo.id}.json`, toDoData )
             .then(() => {
@@ -90,7 +91,7 @@ const ToDoPage: React.FC = () => {
             id: toDo.id,
             text: toDo.text, 
             userId: toDo.userId,
-            isDone: false,
+            isDone: toDo.isDone,
             isPinned: !toDo.isPinned ? true : false,
         }
         axios.put(`https://to-do-app-aa457-default-rtdb.europe-west1.firebasedatabase.app/toDos/${toDo.id}.json`, toDoData )
@@ -106,7 +107,11 @@ const ToDoPage: React.FC = () => {
         <div className="toDo-content">
             <ToDoForm toDoAdd={toDoAddHandler} />
             <ul className="toDo-content-list">
-                <ToDoItem items={toDos} toDoRemove={toDoDeleteHandler} toDoDone={toDoDoneHandler} toDoPinned={toDoPinnedHandler}/>
+                <ToDoItem 
+                    items={toDos} 
+                    toDoRemove={toDoDeleteHandler} 
+                    toDoDone={toDoDoneHandler} 
+                    toDoPinned={toDoPinnedHandler}/>
             </ul>
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 import './ToDoForm.scss';
-import AddSVG from '../../../icons/add-white-24dp.svg';
+import Add from '../../../icons/plus.svg';
 
 interface IToDoFormProps {
     toDoAdd: (text: string) => void;
@@ -25,7 +25,7 @@ const ToDoInput: React.FC<IToDoFormProps> = (props) => {
                 placeholder="Add a to-do"
                 ref={textInputRef}></input>
             <button className="toDo-form-button">
-                <img src={AddSVG} alt="add-icon" />     
+                <img src={Add} alt="add-icon" />     
             </button>
         </form>
     );
