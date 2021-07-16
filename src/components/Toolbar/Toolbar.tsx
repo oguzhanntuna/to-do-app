@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -22,21 +22,22 @@ const Toolbar: React.FC = () => {
             })
     }
 
-    let conditionalToolbarRender = null;
-    if (currentUser) {
-        conditionalToolbarRender = (
-            <React.Fragment>
-                <li className="toolbar-currentUserName">{currentUser ? currentUser.displayName : null}</li>
-                <li className="toolbar-logout" onClick={logOutHandler}>Log out</li>
-            </React.Fragment>
-        );
-    } else {
-        conditionalToolbarRender = (
+    const renderToolbar = (currentUser: any) => {
+        if (currentUser) {
+            return (
+                <React.Fragment>
+                    <li className="toolbar-currentUserName">{currentUser ? currentUser.displayName : null}</li>
+                    <li className="toolbar-logout" onClick={logOutHandler}>Log out</li>
+                </React.Fragment>
+            );
+        } else {
+           return (
             <React.Fragment>
                 <li className="toolbar-login"><Link to="/login">Log in</Link></li>
                 <li className="toolbar-signup"><Link to="/signup">Sign up</Link></li>
             </React.Fragment>
-        );
+           );
+        }
     }
 
     return(
@@ -46,7 +47,7 @@ const Toolbar: React.FC = () => {
                 <li className="toolbar-weather">
                     <Weather />
                 </li>
-                {conditionalToolbarRender}
+                {renderToolbar(currentUser)}
             </ul>
         </header>
     );

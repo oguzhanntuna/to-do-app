@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 
@@ -32,13 +32,17 @@ const SignUp: React.FC = () => {
             return setMessage({text: 'Passwords do not match!', type: 'warning'});
         }
 
+        if (nameRef.current!.value.length > 12) {
+            return setMessage({text: 'Name should be max. 12 characters!', type: 'warning'});
+        }
+
         signUp(emailRef.current!.value, passwordRef.current!.value)
             .then((response: any) => {
                 setLoading(true);
                 response.user.updateProfile({
                     displayName: nameRef.current!.value
                 })
-                history.push('/login');
+                setTimeout(() => {history.push('/')}, 500);
             })
             .catch((error: any) => {
                 setMessage({text: 'The email address is already in use by another account!', type: 'warning'});
@@ -46,11 +50,20 @@ const SignUp: React.FC = () => {
 
         setLoading(false); 
     }
+
+    useEffect(() => {
+        let timer: any;
+        timer = setTimeout(() => { 
+            setMessage({text: '', type: ''});
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [message]);
     
     return (
         <div className="signup">
             <Banner>Sign up</Banner>
-            {message && <Alert type={message.type}>{message.text}</Alert>}
+            {message && message.text !== '' && message.type !== '' && <Alert type={message.type}>{message.text}</Alert>}
             <form className="signup-form" onSubmit={signupSubmitHandler}>
                 <div className="signup-form-name">
                     <label htmlFor="signup-name">Name:</label>

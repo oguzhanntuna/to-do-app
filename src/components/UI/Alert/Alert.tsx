@@ -9,11 +9,9 @@ interface IAlertProps {
 const Alert: React.FC<IAlertProps> = (props) => {
     const style = `alert alert-${props.type}`;
 
-    return (
-        <div className={style}>
-            {props.children}
-        </div>
-    );
+    console.log(props.children);
+
+    return <div className={style}>{props.children}</div>;
 }
 
 export default Alert;
